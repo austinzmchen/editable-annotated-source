@@ -1254,7 +1254,8 @@ Applied as jQuery method.
         @type string
         @default 'top'
         **/        
-        placement: 'top',
+//        placement: 'top',
+        placement: 'left',
         /**
         Whether to hide container on save/cancel.
 
