@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>backbone.js</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" media="all" href="docco.css" />
+    <link rel="stylesheet" href="app.css" />
+
+    <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <!--<link href="bootstrap/css/bootstrap.css" rel="stylesheet">-->
+    <link href="inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link>
+
+    <script src="jquery-1.8.3.js"></script>
+    <!--bootstrap-->
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <!--bootstrap x-editable-->
+    <script src="bootstrap-editable/js/bootstrap-editable.js"></script>
+    <!--wysihtml5-->
+    <script src="inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js"></script>
+    <script src="inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script>
+    <script src="inputs-ext/wysihtml5/wysihtml5.js"></script>
+    <script>
+        $(function(){
+            $('.editarea').editable({
+                // url: '/post', // turn url off for local storage
+                title: 'Enter comments',
+                success: function(response, newValue) {
+                    console.log("editable success " + newValue);
+                    localStorage[this.id] = newValue;
+                },
+                error: function() {
+                    console.log("editable error.");
+                }
+            });
+
+            for (var i = 0; i < $('.editarea').length; i++) {
+                var key = 'edittext' + i;
+                var value = localStorage[key];
+                console.log("localStorage item " + value);
+                $('#' + key).html(value);
+            }
+        });
+    </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    <div id="background2"></div>
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>backbone.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <pre><code>Backbone.js 1.0.0
+
+(c) 2010-2013 Jeremy Ashkenas, DocumentCloud Inc.
+Backbone may be freely distributed under the MIT license.
+For all details and documentation:
+http://backbonejs.org</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>(<span class="keyword">function</span>(){</pre></div></div>
+
+            <div class="editarea" id="edittext1" class="editarea" data-type="wysihtml5">
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>Initial Setup</h2>
+
+            </div>
+
+            <div class="editarea" id="edittext2" class="editarea" data-type="wysihtml5">
+                For simple transition effects, include bootstrap-transition.js once alongside the other JS files.
+                If you're using the compiled (or minified) bootstrap.js, there is no need to include this—it's already there.
+                If you're using the compiled (or minified) bootstrap.js, there is no need to include this—it's already there.
+                If you're using the compiled (or minified) bootstrap.js, there is no need to include this—it's already there.
+                If you're using the compiled (or minified) bootstrap.js, there is no need to include this—it's already there.
+                If you're using the compiled (or minified) bootstrap.js, there is no need to include this—it's already there.
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Save a reference to the global object (<code>window</code> in the browser, <code>exports</code>
+on the server).
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> root = <span class="keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Save the previous value of the <code>Backbone</code> variable, so that it can be
+restored later on, if <code>noConflict</code> is used.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> previousBackbone = root.Backbone;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Create local references to array methods we&#39;ll want to use later.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> array = [];
+  <span class="keyword">var</span> push = array.push;
+  <span class="keyword">var</span> slice = array.slice;
+  <span class="keyword">var</span> splice = array.splice;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>The top-level namespace. All public Backbone classes and modules will
+be attached to this. Exported for both the browser and the server.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> Backbone;
+  <span class="keyword">if</span> (<span class="keyword">typeof</span> exports !== <span class="string">'undefined'</span>) {
+    Backbone = exports;
+  } <span class="keyword">else</span> {
+    Backbone = root.Backbone = {};
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Current version of the library. Keep in sync with <code>package.json</code>.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  Backbone.VERSION = <span class="string">'1.0.0'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Require Underscore, if we&#39;re on the server, and it&#39;s not already present.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">var</span> _ = root._;
+  <span class="keyword">if</span> (!_ &amp;&amp; (<span class="keyword">typeof</span> require !== <span class="string">'undefined'</span>)) _ = require(<span class="string">'underscore'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>For Backbone&#39;s purposes, jQuery, Zepto, Ender, or My Library (kidding) owns
+the <code>$</code> variable.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  Backbone.$ = root.jQuery || root.Zepto || root.ender || root.$;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Runs Backbone.js in <em>noConflict</em> mode, returning the <code>Backbone</code> variable
+to its previous owner. Returns a reference to this Backbone object.
+</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  Backbone.noConflict = <span class="keyword">function</span>() {
+    root.Backbone = previousBackbone;
+    <span class="keyword">return</span> <span class="keyword">this</span>;
+  };</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
