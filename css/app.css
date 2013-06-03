@@ -11,7 +11,7 @@
     width: 40px;
     height: 40px;
 
-    background: url("img/compose-40.png");
+    background: url("../img/compose-40.png");
     z-index: 100; // otherwise some other element overlay it, and click event wont trigger
 }
 #gaiButton {
@@ -21,11 +21,14 @@
     width: 35px;
     height: 35px;
 
+    /*set initial opacity to 0*/
+    opacity: 0;
+
     /*border: 2px solid #666;*/
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background: url("img/gai-square-35.png");
+    background: url("../img/gai-square-35.png");
     z-index: 99; // otherwise some other element overlay it, and click event wont trigger
 }
 

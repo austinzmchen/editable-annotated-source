@@ -4,89 +4,21 @@
 <head>
     <title>backbone.js</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link>
-    <link rel="stylesheet" media="all" href="docco.css" />
-    <link rel="stylesheet" href="app.css" />
 
-    <script src="jquery-1.8.3.js"></script>
-    <!--bootstrap-->
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <!--bootstrap x-editable-->
-    <script src="bootstrap-editable/js/bootstrap-editable.js"></script>
-    <!--wysihtml5-->
-    <script src="inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js"></script>
-    <script src="inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script>
-    <script src="inputs-ext/wysihtml5/wysihtml5.js"></script>
-    <script>
-        $(document).ready(function(){
-            // insert html to each li element
-            var i = 0;
-            $.each($('li'), function () {
-                if (i!=0) { // skip the title
-                    $(this).append('<div id="edittext' + i  + '" class="editarea" data-type="wysihtml5">');
-                }
-                i++;
-            });
-
-            for (var i = 1; i < $('.editarea').length + 1; i++) {
-                var key = 'edittext' + i;
-                var value = localStorage[key];
-//                console.log("localStorage key " + key);
-//                console.log("localStorage value " + value);
-                $('#' + key).html(value);
-            };
-
-            $('.editarea').editable({
-                // url: '/post', // turn url off for local storage
-                title: 'Enter Notes',
-                success: function(response, newValue) {
-//                    console.log("editable success " + newValue);
-                    localStorage[this.id] = newValue;
-                },
-                error: function() {
-                    console.log("editable error.");
-                }
-            });
-
-            $('#background2').width(0);
-            $('.editarea').css('opacity', 0);
-            $('#changeButton').css('right', 20);
-            $('#gaiButton').css('opacity', 0);
-            $('#changeButton').on('click', function() {
-
-                if ($('#background2').width() == 0) {
-                    console.log('changeButton clicked.')
-                    $('#background2').animate({width: "350"}, 'fast');
-                    $('.editarea').animate({opacity: "1"}, 'slow');
-                    $('#changeButton').animate({right: "290"}, 'fast');
-
-                    // gai button animation pre-config
-                    $('#gaiButton').css('right', 290);
-
-                    // gai button animation
-                    $('#gaiButton').animate({opacity: "1"}, { duration: 1500, queue: false });
-                    $('#gaiButton').animate({right: "250"}, { duration: 1500, queue: false });
-                } else {
-                    // gai button animation
-                    $('#gaiButton').css('opacity', 0);
-
-                    $('.editarea').animate({opacity: "0"}, 'fast');
-                    $('#background2').animate({width: "0"}, 'fast');
-                    $('#changeButton').animate({right: "20"}, 'fast');
-                };
-            });
-        });
-    </script>
+    <!--include js library-->
+    <script src="js/lib/jquery-1.8.3.js"></script>
+    <!--main app-->
+    <script src="js/app.js"></script>
 </head>
 <body>
   <div id="container">
     <div id="background"></div>
 
+    <!--added dom divs buttons/backgrounds -->
     <div id="changeButton"></div>
     <a id="gaiButton" href='https://github.com/austinzmchen/editable-annotated-source'></a>
     <div id="background2"></div>
+
     <ul class="sections">
         
           <li id="title">
